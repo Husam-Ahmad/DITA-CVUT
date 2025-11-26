@@ -1,0 +1,43 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity BCD7segmentVHDL is
+    port (
+        a, b, c, d : in  std_logic;
+        s0, s1, s2, s3, s4, s5, s6 : out std_logic
+    );
+end BCD7segmentVHDL;
+
+architecture RTL of BCD7segmentVHDL is
+begin
+    s0 <= (not a and not b and not c and d) or
+          (not a and b and not c and not d) or
+          (a and not b and c and d) or
+          (a and b and not c and d);
+
+    s1 <= (not a and b and not c and d) or
+          (a and c and d) or
+          (b and c and not d) or
+          (a and b and not d);
+
+    s2 <= (not a and not b and c and not d) or
+          (a and b and not d) or
+          (a and b and c);
+
+    s3 <= (not a and not b and not c and d) or
+          (not a and b and not c and not d) or
+          (b and c and d) or
+          (a and not b and c and not d);
+
+    s4 <= (not a and d) or
+          (not b and not c and d) or
+          (not a and b and not c);
+
+    s5 <= (not a and not b and d) or
+          (not a and not b and c) or
+          (not a and c and d) or
+          (a and b and not c and d);
+
+    s6 <= (not a and not b and not c) or
+          (a and b and not c and not d);
+end RTL;
